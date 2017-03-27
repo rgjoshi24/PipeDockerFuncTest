@@ -50,7 +50,7 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangles_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
 				sh "java -jar rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		
@@ -62,7 +62,7 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail.com4-mylabserver.com/rectangles/all/rectangles_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
+				sh "wget http://rgjosih24-gmail.com4-mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
 				sh "java -jar rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		}
