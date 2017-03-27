@@ -40,7 +40,7 @@ pipeline{
 				label 'apache'
 			}
 			steps{
-				sh "cp dist/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/all"
+				sh "cp dist/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/all"
 			}
 		}
 		stage('Functional Test on Centos VM'){
@@ -50,8 +50,8 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
-				sh "java -jar rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+				sh "java -jar rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		
 		}
@@ -62,8 +62,8 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail.com4-mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
-				sh "java -jar rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
+				sh "wget http://rgjosih24-gmail.com4-mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+				sh "java -jar rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		}
 	}	
