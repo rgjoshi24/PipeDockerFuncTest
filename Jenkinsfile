@@ -50,7 +50,7 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
 				sh "java -jar rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		
