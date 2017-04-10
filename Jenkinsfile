@@ -50,8 +50,8 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangles_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
-				sh "java -jar rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
+				sh "java -jar rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		
 		}
@@ -62,8 +62,8 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangles_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
-				sh "java -jar rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${env.MAJOR_VERISON}.${BUILD_NUMBER}.jar"
+				sh "java -jar rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		}
 		stage('Promote To Green'){
@@ -72,7 +72,7 @@ pipeline{
 			}
 
 			steps{
-				sh "cp /var/www/html/rectangles/all/rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangles_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+				sh "cp /var/www/html/rectangles/all/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${env.MAJOR_VERSION}.${BUILD_NUMBER}.jar"
 			}
 		}
 	
