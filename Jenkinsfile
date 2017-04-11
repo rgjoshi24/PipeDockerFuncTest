@@ -117,18 +117,17 @@ pipeline{
 				}	
 			}
 		}
-
-		post{
-
-			failure{
-				emailext(
-					subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Failed !",
-					body: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Failed !",
-					to: "rgjoshi24@gmail.com"
-				)
-			}
-		}
-	
 	}
+	post{
+
+		failure{
+			emailext(
+				subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Failed !",
+				body: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Failed !",
+				to: "rgjoshi24@gmail.com"
+			)
+		}
+	}
+	
 }
 
