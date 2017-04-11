@@ -40,7 +40,7 @@ pipeline{
 				label 'apache'
 			}
 			steps{
-				sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
+				sh "mkdir -p /var/www/html/rectangles/all/${env.BRANCH_NAME}"
 				sh "cp dist/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
 			}
 		}
@@ -92,12 +92,14 @@ pipeline{
 			steps{
 				echo "Stashing any local changes"
 				sh 'git stash'
-				echo "Checking out Dev Branch"
+				echo "Checkout Dev Branch"
 				sh 'git checkout development'
-				ehco "Checking out Master Branch"
+				sh 'git pull'
+				echo "Checking out Master Branch"
 				sh 'git checkout master'
+				sh 'git pull '
 				echo "Merging from Dev to Master"
-				sh 'git merge devlopment'
+				sh 'git merge development'
 				echo "Pushing to Master"
 				sh 'git push origin master'
 			}
