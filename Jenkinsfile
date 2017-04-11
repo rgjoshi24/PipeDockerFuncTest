@@ -102,6 +102,9 @@ pipeline{
 				sh 'git merge development'
 				echo "Pushing to Master"
 				sh 'git push origin master'
+				echo "Tagging the build"
+				sh "git tag rectangle-${MAJOR_VERSION}.${BUILD_NUMBER}"
+				sh "git push origin rectangle-${MAJOR_VERSION}.${BUILD_NUMBER}"
 			}
 		}
 	
