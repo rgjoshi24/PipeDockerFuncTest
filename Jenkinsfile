@@ -99,7 +99,6 @@ pipeline{
 				sh 'git checkout master'
 				echo "Merging from Dev to Master"
 				sh 'git merge development'
-				sh 'git commit '
 				echo "Pushing to Master"
 				sh 'git push origin master'
 			}
