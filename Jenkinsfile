@@ -40,7 +40,8 @@ pipeline{
 				label 'apache'
 			}
 			steps{
-				sh "cp dist/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/all"
+				sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
+				sh "cp dist/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
 			}
 		}
 		stage('Functional Test on Centos VM'){
@@ -50,7 +51,7 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
 				sh "java -jar rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		
@@ -62,7 +63,7 @@ pipeline{
 
 			steps{
 
-				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+				sh "wget http://rgjosih24-gmail-com4.mylabserver.com/rectangles/all/${env.BRANCH_NAME}/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
 				sh "java -jar rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar 6 4"
 			}
 		}
@@ -77,6 +78,28 @@ pipeline{
 
 			steps{
 				sh "cp /var/www/html/rectangles/all/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${MAJOR_VERSION}.${BUILD_NUMBER}.jar"
+			}
+		}
+		stage('Promote Dev Branch to Master'){
+			agent{
+				label 'apache'
+			}
+			when{
+
+				branch 'development'
+			}
+
+			steps{
+				echo "Stashing any local changes"
+				sh 'git stash'
+				echo "Checking out Dev Branch"
+				sh 'git checkout development'
+				ehco "Checking out Master Branch"
+				sh 'git checkout master"
+				echo "Merging from Dev to Master"
+				sh 'git merge devlopment'
+				echo "Pushing to Master"
+				sh 'git push origin master'
 			}
 		}
 	
