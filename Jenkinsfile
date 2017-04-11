@@ -92,9 +92,12 @@ pipeline{
 			steps{
 				echo "Stashing any local changes"
 				sh 'git stash'
+				echo "Checkout Dev Branch"
+				sh 'git checkout development'
+				sh 'git pull'
 				echo "Checking out Master Branch"
 				sh 'git checkout master'
-				sh 'git pull origin master'
+				sh 'git pull '
 				echo "Merging from Dev to Master"
 				sh 'git merge development'
 				echo "Pushing to Master"
